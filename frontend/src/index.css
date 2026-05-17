@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ng-blue: #2b52c3;
+  --ng-blue-deep: #1e3da3;
+  --ng-blue-soft: #eaf0ff;
+  --ng-white: #ffffff;
+  --ng-gray-bg: #f5f6f8;
+  --ng-text: #2e2e2e;
+  --ng-muted: #6b7280;
+  --ng-green: #10b981;
+}
+
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; font-family: "Manrope", system-ui, sans-serif; background-color: var(--ng-white); color: var(--ng-text); letter-spacing: -0.01em; }
+::selection { background-color: var(--ng-blue); color: #ffffff; }
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; --foreground: 0 0% 18%; --card: 0 0% 100%; --card-foreground: 0 0% 18%;
+    --popover: 0 0% 100%; --popover-foreground: 0 0% 18%; --primary: 224 64% 47%; --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%; --secondary-foreground: 0 0% 18%; --muted: 220 14% 96%; --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 96%; --accent-foreground: 0 0% 18%; --destructive: 0 84% 60%; --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%; --input: 220 13% 91%; --ring: 224 64% 47%; --radius: 0.875rem;
+  }
+}
+
+.font-display { font-family: "Manrope", system-ui, sans-serif; letter-spacing: -0.035em; }
+.font-serif-accent { font-family: "Instrument Serif", Georgia, serif; font-style: italic; letter-spacing: -0.01em; }
+
+.bg-grid { background-image: linear-gradient(to right, rgba(43, 82, 195, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(43, 82, 195, 0.06) 1px, transparent 1px); background-size: 48px 48px; }
+.bg-grid-fade { mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%); }
+.glass-card { background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); border: 1px solid rgba(43, 82, 195, 0.1); }
+.dot-glow { box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.18); }
+
+@keyframes ng-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ng-marquee { animation: ng-marquee 28s linear infinite; }
+@keyframes ng-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(1.2deg); } }
+.ng-float { animation: ng-float 7s ease-in-out infinite; }
+@keyframes ng-float-slow { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-22px) rotate(-1deg); } }
+.ng-float-slow { animation: ng-float-slow 10s ease-in-out infinite; }
+@keyframes ng-pulse { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.8); opacity: 0; } }
+.ng-pulse { animation: ng-pulse 2.2s ease-out infinite; }
+
+.ng-btn-primary { background: linear-gradient(135deg, #2b52c3 0%, #1e3da3 100%); color: white; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 10px 30px -10px rgba(43, 82, 195, 0.55); transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; }
+.ng-btn-primary:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 18px 38px -12px rgba(43, 82, 195, 0.6); }
+.ng-btn-ghost { background: rgba(43, 82, 195, 0.06); color: #2b52c3; border: 1px solid rgba(43, 82, 195, 0.18); transition: all 0.25s ease; }
+.ng-btn-ghost:hover { background: rgba(43, 82, 195, 0.12); border-color: rgba(43, 82, 195, 0.3); }
+.dotted-divider { background-image: radial-gradient(circle, #c7cdd6 1px, transparent 1.2px); background-size: 10px 10px; }
+.reveal-init { opacity: 0; transform: translateY(28px); }
+.feature-card { transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease; }
+.feature-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px -28px rgba(43, 82, 195, 0.28); border-color: rgba(43, 82, 195, 0.25); }
+.phone-glow::before { content: ""; position: absolute; inset: -60px; background: radial-gradient(closest-side, rgba(43, 82, 195, 0.22), rgba(43, 82, 195, 0.08) 55%, transparent 78%); filter: blur(28px); z-index: 0; }
+.section-rule { background: linear-gradient(90deg, transparent, rgba(43, 82, 195, 0.25), transparent); height: 1px; }
+.logo-strip { mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); }
+.cursor-caret { display: inline-block; width: 2px; height: 0.95em; background: #2b52c3; margin-left: 4px; vertical-align: middle; animation: ng-blink 1s steps(2) infinite; }
+@keyframes ng-blink { 50% { opacity: 0; } }
+@keyframes ng-reveal { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ng-reveal-scale { from { opacity: 0; transform: translateY(40px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.reveal { opacity: 0; animation: ng-reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.reveal.r-1 { animation-delay: 0.05s; } .reveal.r-2 { animation-delay: 0.12s; } .reveal.r-3 { animation-delay: 0.2s; } .reveal.r-4 { animation-delay: 0.28s; } .reveal.r-5 { animation-delay: 0.36s; }
