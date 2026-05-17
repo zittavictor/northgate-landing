@@ -1,10 +1,9 @@
 import React from "react";
 
 /**
- * NorthGate Logo — updated with the enhanced, bigger and bolder branding.
+ * NorthGate Logo — updated with the version 3 branding.
  */
 export default function Logo({ size = "md" }) {
-  // Enhanced sizes: sm (44), md (56), lg (72)
   const height = size === "sm" ? 44 : size === "lg" ? 72 : 56;
 
   return (
@@ -13,9 +12,9 @@ export default function Logo({ size = "md" }) {
       data-testid="northgate-logo"
     >
       <img
-        src="/assets/northgate-logo-v2.png"
+        src="/assets/northgate-logo-v3.png"
         alt="NorthGate logo"
-        className="h-auto block drop-shadow-sm"
+        className="h-auto block"
         style={{ height: `\${height}px` }}
       />
     </div>
