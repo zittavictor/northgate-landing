@@ -2,53 +2,41 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Zap,
-  ShieldCheck,
-  FileText,
-  BarChart3,
-  RefreshCw,
-  Lock,
-} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const features = [
+const items = [
   {
-    icon: Zap,
-    title: "Smart E-Invoicing",
-    body: "Auto-generate FIRS-compliant invoices with embedded tax calculations and UBL 2.1 formatting — in milliseconds.",
-    accent: "blue",
+    title: "Standard‑Compliant E‑Invoicing",
+    body:
+      "Issue invoices that meet FIRS and UBL 2.1 standards out of the box — no manual formatting required.",
+    icon: "/assets/icon-1.png",
+    accent: "from-[#2B52C3] to-[#1E3DA3]",
+    tag: "01",
   },
   {
-    icon: ShieldCheck,
-    title: "Real-Time Validation",
-    body: "Every invoice passes live FIRS validation before issuance. Zero invalid submissions, zero penalties.",
-    accent: "green",
+    title: "Real‑Time Validation",
+    body:
+      "Every invoice is validated against tax rules and signed instantly — errors caught before they cost you.",
+    icon: "/assets/icon-2.png",
+    accent: "from-[#3A66E0] to-[#2B52C3]",
+    tag: "02",
   },
   {
-    icon: FileText,
-    title: "FIRS Compliance",
-    body: "Stay current with FIRS mandates automatically. Our engine updates in real time as regulations evolve.",
-    accent: "blue",
+    title: "Audit‑Ready Reporting",
+    body:
+      "Generate FIRS, VAT and WHT reports with one click. Full trail, immutable history, zero stress.",
+    icon: "/assets/icon-3.png",
+    accent: "from-[#1E3DA3] to-[#15307F]",
+    tag: "03",
   },
   {
-    icon: BarChart3,
-    title: "Audit-Ready Reporting",
-    body: "One-click audit packages with full invoice trails, VAT summaries, and submission logs ready for FIRS review.",
-    accent: "green",
-  },
-  {
-    icon: RefreshCw,
-    title: "ERP Integration",
-    body: "Plug NorthGate into SAP, Oracle, Sage or any custom stack via our RESTful API — no rework required.",
-    accent: "blue",
-  },
-  {
-    icon: Lock,
-    title: "Enterprise Security",
-    body: "SOC 2 aligned, end-to-end encrypted, and hosted on ISO 27001-compliant infrastructure.",
-    accent: "green",
+    title: "Secure Cloud Storage",
+    body:
+      "Encrypted, geo‑redundant storage for every invoice — retrieve any record in seconds, anywhere.",
+    icon: "/assets/icon-4.png",
+    accent: "from-[#2B52C3] to-[#3A66E0]",
+    tag: "04",
   },
 ];
 
@@ -57,13 +45,13 @@ export default function Features() {
 
   useGSAP(
     () => {
-      gsap.from(".feat-card", {
-        y: 32,
-        stagger: 0.07,
+      gsap.from(".f-card", {
+        y: 30,
+        stagger: 0.08,
         duration: 0.7,
         ease: "power3.out",
         clearProps: "transform",
-        scrollTrigger: { trigger: root.current, start: "top 88%" },
+        scrollTrigger: { trigger: ".f-grid", start: "top 90%" },
       });
     },
     { scope: root },
@@ -74,55 +62,79 @@ export default function Features() {
       id="features"
       ref={root}
       data-testid="features-section"
-      className="py-24 md:py-32 bg-white"
+      className="relative py-24 md:py-32 bg-[#0B1530] overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div className="text-center max-w-2xl mx-auto">
+      {/* Decorative background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-32 right-1/3 w-[420px] h-[420px] rounded-full bg-ng-blue/8 blur-3xl" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
+        {/* Header */}
+        <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em] font-bold text-ng-blue">
             <span className="w-6 h-px bg-ng-blue" />
-            Platform Features
-            <span className="w-6 h-px bg-ng-blue" />
+            Platform Capabilities
           </div>
           <h2
-            className="mt-4 font-display font-extrabold text-[34px] leading-[1.08] sm:text-[44px] lg:text-[52px] text-[#0F1B3D]"
+            className="f-title mt-4 font-display font-extrabold text-[34px] leading-[1.08] sm:text-[44px] lg:text-[52px] text-white"
             data-testid="features-headline"
           >
-            Everything you need to invoice with{" "}
-            <span className="font-serif-accent text-ng-blue">confidence</span>.
+            Four pillars. One{" "}
+            <span className="font-serif-accent text-ng-blue">unstoppable</span>{" "}
+            tax engine.
           </h2>
-          <p className="mt-5 text-[16px] text-ng-muted leading-relaxed">
-            Six core capabilities designed for Nigerian enterprises navigating
-            the new FIRS e-invoicing mandate.
+          <p className="f-sub mt-5 text-[16.5px] text-white/70 max-w-2xl leading-relaxed">
+            Every feature in NorthGate exists to remove friction from compliance
+            — so finance teams move faster, with full confidence.
           </p>
         </div>
 
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((f, i) => {
-            const Icon = f.icon;
-            return (
+        {/* Grid */}
+        <div className="f-grid mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {items.map((it, i) => (
+            <article
+              key={i}
+              className="f-card feature-card relative bg-[#0B1530] border border-black/8 rounded-2xl p-6 overflow-hidden"
+              data-testid={`feature-card-${i}`}
+            >
+              {/* Accent corner */}
               <div
-                key={i}
-                className="feat-card feature-card group rounded-2xl p-6 border border-black/8 bg-white hover:border-ng-blue/20"
-                data-testid={`feature-card-${i}`}
-              >
-                <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                    f.accent === "blue"
-                      ? "bg-ng-blue-soft text-ng-blue"
-                      : "bg-ng-green/10 text-ng-green"
-                  }`}
-                >
-                  <Icon size={22} />
-                </div>
-                <h3 className="mt-5 font-display font-bold text-[18px] text-ng-text">
-                  {f.title}
-                </h3>
-                <p className="mt-3 text-[14.5px] text-ng-muted leading-relaxed">
-                  {f.body}
-                </p>
+                className={`absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-br ${it.accent} opacity-[0.08]`}
+              />
+
+              {/* Icon */}
+              <div className="relative w-16 h-16 rounded-2xl bg-ng-blue-soft/70 border border-ng-blue/15 flex items-center justify-center">
+                <img
+                  src={it.icon}
+                  alt={it.title}
+                  className="w-12 h-12 object-contain"
+                  data-testid={`feature-icon-${i}`}
+                />
               </div>
-            );
-          })}
+
+              <div className="mt-5 text-[11px] uppercase tracking-[0.22em] font-bold text-ng-blue/70">
+                Feature · {it.tag}
+              </div>
+              <h3
+                className="mt-2 font-display font-bold text-[19px] text-white leading-snug"
+                data-testid={`feature-title-${i}`}
+              >
+                {it.title}
+              </h3>
+              <p className="mt-3 text-[14.5px] text-white/70 leading-relaxed">
+                {it.body}
+              </p>
+
+              {/* footer rule */}
+              <div className="mt-6 flex items-center justify-between text-[12px] font-semibold text-ng-blue">
+                <span>Learn more</span>
+                <span className="w-7 h-7 rounded-full bg-ng-blue/8 flex items-center justify-center group-hover:bg-ng-blue group-hover:text-white">
+                  →
+                </span>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
